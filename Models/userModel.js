@@ -8,7 +8,8 @@ var userSchema = new Schema({
     lastName: String,
     email: String,
     password: String,
-    spendLimit: Number
+    spendLimit: Number,
+    userExpenses : [{type: Schema.Types.ObjectId, ref: 'Expense'}]
 })
 
 userSchema.pre('save', function (next) {

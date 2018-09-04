@@ -30,7 +30,7 @@ userRoutes.get('/getall', (req, res) => {
 
 //Get user by email
 userRoutes.get('/get', (req, res) => {
-    User.find({ _id: req.headers.id }, '-_id -__v', (err, users) => {
+    User.find({ _id: req.headers.id }, '-_id -__v -password', (err, users) => {
         if (users.length > 0)
             res.status(200).json({ User: users[0] });
         else
