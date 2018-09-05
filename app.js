@@ -5,6 +5,7 @@ import { expenseRoutes } from './Controllers/expenseRoute';
 import mongoose from 'mongoose';
 import { validateApiKey } from './Authentication/validateApiKey';
 import { mongoDbUrl, port } from './config';
+import cors from 'cors'
 
 
 //Initialise express
@@ -17,6 +18,9 @@ var db = mongoose.connect(mongoDbUrl, { useNewUrlParser: true }, (err) => {
         throw err;
     }
 });
+
+//enable cors
+app.use(cors({exposedHeaders : ['Content-Type', 'auth-Token']}))
 
 //middleware to validate the API key in the request
 app.use(validateApiKey);

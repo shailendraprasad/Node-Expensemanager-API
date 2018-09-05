@@ -20,7 +20,7 @@ var verifyToken = (req, res, next) => {
     // verifies secret and checks exp
     jwt.verify(token, secret, function (err, decoded) {
         if (err) {
-            return res.status(500).send({ auth: false, ErrorMessage: err.message || "Token authentication failure." });
+            return res.status(401).send({ auth: false, ErrorMessage: err.message || "Token authentication failure." });
         }
         // if everything is good, save to request for use in other routes
         req.headers.id = decrypt(decoded.data);
