@@ -1,6 +1,9 @@
 {
   "presets": [
-    "es2015"
+    "babel-preset-latest"
   ],
-  "plugins": []
+  "plugins": [],
+  "ignore": [
+    "./node-modules"
+  ]
 }

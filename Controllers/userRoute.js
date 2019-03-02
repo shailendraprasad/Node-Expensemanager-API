@@ -47,14 +47,18 @@ userRoutes.post('/create', (req, res) => {
             return res.status(400).json({ Message: 'User email already exists!' });
         }
 
-        User.create(userfromBody);
+        User.create(userfromBody).then((user) => {
+            var token = createToken(user._id);
+            res.header('auth-Token', token);
 
-        return res.status(201).json({ Message: 'User created successfuly!' });
+            return res.status(201).json({ Message: 'User created successfuly!' });
+        });
+
     });
-});
+}); 
 
 //Login for the user
-userRoutes.post('/login', (req, res) => {
+userRoutes.post('/login', (req, res) => { 
     let email = req.body.email;
     let password = req.body.password;
 

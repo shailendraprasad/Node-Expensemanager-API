@@ -31,4 +31,12 @@ expenseRoutes.post('/create', (req, res) => {
     });
 });
 
+expenseRoutes.get('/top', (req, res) => {
+    Expense.create(req.body, (err, result) => {
+        User.findByIdAndUpdate(req.headers.id, { $push: { userExpenses: result._id } }, function (err, user) {
+            return res.status(200).json({ Message: 'Expense created successfuly for the user' });
+        });
+    });
+});
+
 export { expenseRoutes }
