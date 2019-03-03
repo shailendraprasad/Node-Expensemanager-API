@@ -6,6 +6,7 @@
 trigger:
 - master
 
+name: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)_1$(Rev:.r)
 
 steps:
 - script: |
@@ -16,7 +17,16 @@ steps:
 - task: CopyFiles@2
   inputs:
     #sourceFolder: # Optional
-    contents: '**' 
+    contents: 'dist/*' 
+    targetFolder: '$(Build.ArtifactStagingDirectory)'
+    #cleanTargetFolder: false # Optional
+    #overWrite: false # Optional
+    #flattenFolders: false # Optional
+
+- task: CopyFiles@2
+  inputs:
+    #sourceFolder: # Optional
+    contents: 'web.config' 
     targetFolder: '$(Build.ArtifactStagingDirectory)'
     #cleanTargetFolder: false # Optional
     #overWrite: false # Optional
@@ -25,7 +35,7 @@ steps:
 - task: PublishBuildArtifacts@1
   inputs:
     pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
-    artifactName: 'drop' 
+    artifactName: 'API Artifacts' 
     publishLocation: 'Container'
     targetPath: # Required when publishLocation == FilePath
     #parallel: false # Optional
