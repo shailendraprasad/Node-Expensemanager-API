@@ -14,7 +14,7 @@ const app = express();
 //connect to the MongoDb database using mongoose
 var db = mongoose.connect(mongoDbUrl, { useNewUrlParser: true }, (err) => {
     if (err) {
-        console.log('error while connecting to the Database')
+        console.log('error while connecting to the Mongo DB Database')
         throw err;
     }
 });
