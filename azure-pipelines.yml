@@ -6,7 +6,7 @@
 trigger:
 - master
 
-name: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)_1$(Rev:.r)
+name: 1$(Rev:.r)
 
 steps:
 - script: |
@@ -17,7 +17,7 @@ steps:
 - task: CopyFiles@2
   inputs:
     #sourceFolder: # Optional
-    contents: 'dist/*' 
+    contents: 'dist/**' 
     targetFolder: '$(Build.ArtifactStagingDirectory)'
     #cleanTargetFolder: false # Optional
     #overWrite: false # Optional
